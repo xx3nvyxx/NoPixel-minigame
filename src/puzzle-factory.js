@@ -20,12 +20,12 @@ const LANG_COLORS = LANG.COLORS.reduce((obj, key, i) => {obj[key] = COLOR_CODES[
 const COLORS = {
     'black' : 'black',
     'white' : 'white', 
-    'blue' : '#1991F9',
-    'red' : '#8C0C00',
-    'yellow' : '#FFE335',
-    'orange' : '#FF9900',
-    'green' : '#46A04F',
-    'purple' : '#A43AB5',
+    'blue' : '#2195EE',
+    'red' : '#7B0100',
+    'yellow' : '#FCEB3D', //done
+    'orange' : '#FD9802',
+    'green' : '#4CAE4f', //done
+    'purple' : '#9926AC', //done
 }
 
 // functions that return answers from PuzzleData class
