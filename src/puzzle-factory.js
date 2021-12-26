@@ -8,7 +8,7 @@ if(!TRANSLATIONS.LANGUAGES.includes(selectedLang)) console.log(`LANGUAGE NOT SUP
 const LANG = TRANSLATIONS[selectedLang]
 
 const SHAPES = ["square", "triangle", "rectangle", "circle"]
-const COLORABLE = ['background', 'text', 'number', 'shape']
+const COLORABLE = ['background', 'colortext', 'shapetext', 'number', 'shape']
 
 const COLOR_CODES = ['black', 'white','#1991F9','#8C0C00','#FFE335','#FF9900','#46A04F','#A43AB5']
 
@@ -31,7 +31,8 @@ const COLORS = {
 // functions that return answers from PuzzleData class
 const QUESTIONS = {
     'background color' : (d) => d.colors['background'],
-    'text background color' : (d) => d.colors['text'],
+    'color text background color' : (d) => d.colors['colortext'],
+    'shape text background color' : (d) => d.colors['shapetext'],
     'number color' : (d) => d.colors['number'],
     'shape color' : (d) => d.colors['shape'],
     'color text' : (d) => d.text[0],
@@ -64,7 +65,7 @@ export function generateRandomPuzzle(){
         colors['text'] = sample(Object.keys(COLORS))
 
     // ensure nothing blends with shape
-    while(['background', 'text', 'number'].map(i => colors[i]).includes(colors['shape']))
+    while(['background', 'colortext', 'shapetext', 'number'].map(i => colors[i]).includes(colors['shape']))
         colors['shape'] = sample(Object.keys(COLORS))
     
     return new PuzzleData(shape, number, [topText, bottomText], colors)
@@ -89,7 +90,7 @@ export function generateQuestionAndAnswer(nums, puzzles){
     puzzles = puzzles.map(convertPuzzleDataLang)
 
     // this is confusing as hell, but works somehow
-    const question =  `${firstQuestion} (${nums[positionOne]}) ${andWord} ${secondQuestion} (${nums[positionTwo]})`
+    const question =  firstQuestion+' ('+nums[positionOne]+') '+andWord+' '+secondQuestion+' ('+nums[positionTwo]+')'
     const answer = QUESTIONS[firstQuestion](puzzles[positionOne]) + ' ' + QUESTIONS[secondQuestion](puzzles[positionTwo])
 
 
@@ -106,7 +107,8 @@ function convertPuzzleDataLang(puzzle){
     puzzle.colors.background = convertColor(puzzle.colors.background)
     puzzle.colors.number = convertColor(puzzle.colors.number)
     puzzle.colors.shape = convertColor(puzzle.colors.shape)
-    puzzle.colors.text = convertColor(puzzle.colors.text)
+    puzzle.colors.colortext = convertColor(puzzle.colors.colortext)
+    puzzle.colors.shapetext = convertColor(puzzle.colors.shapetext)
     puzzle.text = puzzle.text.map(i => isColor(i) ? convertColor(i) : i)
     return result
 }
