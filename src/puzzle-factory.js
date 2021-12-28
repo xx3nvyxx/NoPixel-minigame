@@ -50,11 +50,21 @@ class PuzzleData {
     }
 }
 
+var finalNumbers = []
+
+export function emptyFinalNumbers() {
+    finalNumbers = []
+}
+
 // generates a random puzzle
 export function generateRandomPuzzle(){
 
     const shape = sample(SHAPES)
-    const number = randomInt(9) + 1
+    var number = randomInt(4) + 1
+    while(finalNumbers.includes(number)){
+        number = randomInt(4) + 1
+    }
+    finalNumbers.push(number)
 
     const type = randomInt(2)
     var topText = "";
@@ -68,17 +78,27 @@ export function generateRandomPuzzle(){
         bottomText = sample(Object.keys(LANG_COLORS))
     }
 
+
     const colors = COLORABLE.reduce((obj, color) => {obj[color] = sample(Object.keys(COLORS)); return obj}, {})
 
     // ensure shape and background don't blend
     while(colors['text'] == colors['background'])
         colors['text'] = sample(Object.keys(COLORS))
 
+    while(['colortext', 'shapetext'].map(i => colors[i]).includes(colors['background']))
+        colors['background'] = sample(Object.keys(COLORS))
+
+    while(colors['colortext'] == colors['shapetext']){
+        colors['colortext'] = sample(Object.keys(COLORS))
+    }
+
     // ensure nothing blends with shape
     while(['background', 'colortext', 'shapetext', 'number'].map(i => colors[i]).includes(colors['shape']))
-        colors['shape'] = sample(Object.keys(COLORS))
-    
+    colors['shape'] = sample(Object.keys(COLORS))
+
+
     return new PuzzleData(shape, number, [topText, bottomText], colors, type)
+        
 }
 
 
@@ -99,6 +119,8 @@ export function generateQuestionAndAnswer(nums, puzzles){
 
     puzzles = puzzles.map(convertPuzzleDataLang)
 
+    console.log(puzzles)
+    //color up shape down fine
     // this is confusing as hell, but works somehow
     const question =  firstQuestion+' ('+nums[positionOne]+') '+andWord+' '+secondQuestion+' ('+nums[positionTwo]+')'
     const answer = QUESTIONS[firstQuestion](puzzles[positionOne]) + ' ' + QUESTIONS[secondQuestion](puzzles[positionTwo])
