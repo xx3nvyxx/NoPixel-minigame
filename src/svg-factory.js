@@ -8,6 +8,8 @@ export function getPuzzleSvg(puzzleData){
     const textSize = 21
     const textWeigth = 'normal'
     //const textColor = puzzleData.colors['text']
+        var topText = "";
+    var bottomText = "";
 
     const shapeSVG = createShape(puzzleData.shape, puzzleData.colors['shape'])
     if(puzzleData.type == 1) {
