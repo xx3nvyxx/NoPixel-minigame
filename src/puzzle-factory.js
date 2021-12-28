@@ -57,12 +57,12 @@ export function emptyFinalNumbers() {
 }
 
 // generates a random puzzle
-export function generateRandomPuzzle(){
+export function generateRandomPuzzle(puzzleAmount){
 
     const shape = sample(SHAPES)
-    var number = randomInt(4) + 1
+    var number = randomInt(puzzleAmount) + 1
     while(finalNumbers.includes(number)){
-        number = randomInt(4) + 1
+        number = randomInt(puzzleAmount) + 1
     }
     finalNumbers.push(number)
 
