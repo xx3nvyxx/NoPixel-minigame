@@ -1,12 +1,13 @@
 import { $, shuffleArray, delay, playSound } from './helpers.js'
-import { generateRandomPuzzle, generateQuestionAndAnswer } from './puzzle-factory.js'
+import { generateRandomPuzzle, generateQuestionAndAnswer, emptyFinalNumbers } from './puzzle-factory.js'
 import { getPuzzleSvg } from './svg-factory.js'
 
 const progressBar = $('.answer-progress-bar')
 const inputElement = $('.answer-input')
 
-let puzzleTime = 6
+let puzzleTime = 7
 let puzzleAmount = 4
+
 
 // handles generating puzzle and returning result
 export async function doPuzzle(){
@@ -23,6 +24,8 @@ export async function doPuzzle(){
         return square
     })
     const puzzles = [...Array(puzzleAmount)].map(_ => generateRandomPuzzle())
+
+    emptyFinalNumbers()
       
     // generate numbers and display
     const nums = shuffleArray([...Array(puzzleAmount)].map((v, i) => i+1))
