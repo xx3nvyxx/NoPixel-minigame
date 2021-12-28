@@ -109,11 +109,10 @@ export function generateQuestionAndAnswer(nums, puzzles){
     do {tempPosTwo = randomInt(nums.length)} while(positionOne == tempPosTwo) 
     const positionTwo = tempPosTwo
     
-
-    const firstQuestion = sample(Object.keys(QUESTIONS))
+    let firstQuestion = sample(Object.keys(QUESTIONS))
     let tempSecondQuestion
     do {tempSecondQuestion = sample(Object.keys(QUESTIONS))} while(tempSecondQuestion == firstQuestion) 
-    const secondQuestion = tempSecondQuestion
+    let secondQuestion = tempSecondQuestion
 
     const andWord = 'AND'
 
@@ -123,6 +122,16 @@ export function generateQuestionAndAnswer(nums, puzzles){
     //color up shape down fine
     // this is confusing as hell, but works somehow
     const question =  firstQuestion+' ('+nums[positionOne]+') '+andWord+' '+secondQuestion+' ('+nums[positionTwo]+')'
+    if (puzzles[positionOne].type==0 && firstQuestion=='color text'){
+        firstQuestion='shape text'
+    }else if(puzzles[positionOne].type==0 && firstQuestion=='shape text'){
+        firstQuestion='color text'
+    }
+    if (puzzles[positionTwo].type==0 && secondQuestion=='color text'){
+        secondQuestion='shape text'
+    }else if(puzzles[positionTwo].type==0 && secondQuestion=='shape text'){
+        secondQuestion='color text'
+    }
     const answer = QUESTIONS[firstQuestion](puzzles[positionOne]) + ' ' + QUESTIONS[secondQuestion](puzzles[positionTwo])
 
 
