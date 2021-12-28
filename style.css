@@ -37,7 +37,7 @@
   border: rgba(255, 255, 255, 0.561) solid 2px;
 }
 
-.time-display, .puzzle-display{
+.time-display, .puzzle-display, .streak-display{
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.192);
   font-weight: bolder;
@@ -346,5 +346,21 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 }
+
+.streak {
+  position:absolute; 
+  bottom:90px;
+
+  margin: 20px;
+  padding: 10px;
+
+  width: fit-content;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  
+  color: white;
+  background-color: var(--secondary);
+}
+
 
 
