@@ -23,7 +23,7 @@ export async function doPuzzle(){
         $('#number-container').appendChild(square)
         return square
     })
-    const puzzles = [...Array(puzzleAmount)].map(_ => generateRandomPuzzle())
+    const puzzles = [...Array(puzzleAmount)].map(_ => generateRandomPuzzle(puzzleAmount))
 
     emptyFinalNumbers()
       
