@@ -55,8 +55,17 @@ export function generateRandomPuzzle(){
     const shape = sample(SHAPES)
     const number = randomInt(9) + 1
 
-    const topText = sample(Object.keys(LANG_COLORS))
-    const bottomText = sample(SHAPES)
+    const number1 = randomInt(2)
+    var topText = "";
+    var bottomText = "";
+    if (number1==1){
+        topText = sample(Object.keys(LANG_COLORS))
+        bottomText = sample(SHAPES)
+    }
+    else{
+        topText = sample(SHAPES)
+        bottomText = sample(Object.keys(LANG_COLORS))
+    }
 
     const colors = COLORABLE.reduce((obj, color) => {obj[color] = sample(Object.keys(COLORS)); return obj}, {})
 
