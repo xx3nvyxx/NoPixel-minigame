@@ -41,11 +41,12 @@ const QUESTIONS = {
 }
 
 class PuzzleData {
-    constructor(shape, number, text, colors) {
+    constructor(shape, number, text, colors, type) {
       this.shape = shape
       this.number = number
       this.text = text
       this.colors = colors
+      this.type = type
     }
 }
 
@@ -55,10 +56,10 @@ export function generateRandomPuzzle(){
     const shape = sample(SHAPES)
     const number = randomInt(9) + 1
 
-    const number1 = randomInt(2)
+    const type = randomInt(2)
     var topText = "";
     var bottomText = "";
-    if (number1==1){
+    if (type==1){
         topText = sample(Object.keys(LANG_COLORS))
         bottomText = sample(SHAPES)
     }
@@ -77,7 +78,7 @@ export function generateRandomPuzzle(){
     while(['background', 'colortext', 'shapetext', 'number'].map(i => colors[i]).includes(colors['shape']))
         colors['shape'] = sample(Object.keys(COLORS))
     
-    return new PuzzleData(shape, number, [topText, bottomText], colors)
+    return new PuzzleData(shape, number, [topText, bottomText], colors, type)
 }
 
 
