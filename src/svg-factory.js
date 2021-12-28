@@ -10,8 +10,13 @@ export function getPuzzleSvg(puzzleData){
     //const textColor = puzzleData.colors['text']
 
     const shapeSVG = createShape(puzzleData.shape, puzzleData.colors['shape'])
-    const topText = createText(puzzleData.text[0].toUpperCase(), puzzleData.colors['colortext'], textSize, textWeigth, 31)
-    const bottomText = createText(puzzleData.text[1].toUpperCase(), puzzleData.colors['shapetext'], textSize, textWeigth, 67)
+    if(puzzleData.type == 1) {
+        topText = createText(puzzleData.text[0].toUpperCase(), puzzleData.colors['colortext'], textSize, textWeigth, 31)
+        bottomText = createText(puzzleData.text[1].toUpperCase(), puzzleData.colors['shapetext'], textSize, textWeigth, 67)
+    }else {
+        topText = createText(puzzleData.text[0].toUpperCase(), puzzleData.colors['shapetext'], textSize, textWeigth, 31)
+        bottomText = createText(puzzleData.text[1].toUpperCase(), puzzleData.colors['colortext'], textSize, textWeigth, 67)
+    }
     const numberText = createText(puzzleData.number, puzzleData.colors['number'], 60, 100, 50, 'Arial, Helvetica')
 
     return createSVG([shapeSVG, topText, bottomText, numberText])
