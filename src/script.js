@@ -11,10 +11,11 @@ import { doPuzzle } from './puzzle-handler.js'
 
 // runs on site load and handles entire  flow
 async function start(){
-
+    var streak = 0;
     // reset from previous
     $('.try-again').classList.add('hidden')
     $('.spy-icon').src = 'assets/spy-icon.png'
+    $('.streak-display').innerHTML = streak
 
     const dialing = playSound('assets/dialing.mp3', 0.1)
 
@@ -29,6 +30,7 @@ async function start(){
     // hide text and show squares
     $('#text-container').classList.toggle('hidden')
     $('#number-container').classList.toggle('hidden')
+    
 
 
     // activate puzzle 4 times, break on fail
@@ -36,9 +38,15 @@ async function start(){
     let answer
     let result = true
 
-    for (let i = 0; i < 4 && result; i++) {
+    while(result) {
         [submitted, answer] = await doPuzzle()
         result = (submitted?.toLowerCase() == answer)
+        if(result) {
+            streak++;
+        }
+        console.log(streak);
+        $('.streak-display').innerHTML = streak;
+    //for (let i = 0; i < 4 && result; i++) {
     }
 
     // hide squares and show text
@@ -50,6 +58,14 @@ async function start(){
     setInformationText((result) ? 'the system has been bypassed.' : "The system didn't accept your answers")
     if(!result) $('.spy-icon').src = 'assets/failed.png'
 
+    // if(result) {
+    //     console.log
+    //     streak++;
+    // }else {
+    //     streak = 0;
+    // }
+
+    
     $('#answer-reveal').textContent = answer
 
     $('#submitted-reveal').textContent = (result) ?             'Good job, indeed the' :
