@@ -7,7 +7,7 @@ const inputElement = $('.answer-input')
 
 let puzzleTime = 8
 let puzzleAmount = 8
-let answersAmount = 3
+let puzzleAnswers = 3
 
 
 // handles generating puzzle and returning result
@@ -54,7 +54,7 @@ export async function doPuzzle(){
     squares.forEach((square, i)  => square.innerHTML =  getPuzzleSvg(puzzles[i]))
 
     // generate and display question
-    const [question, answer] = generateQuestionAndAnswer(nums, puzzles) 
+    const [question, answer] = generateQuestionAndAnswer(nums, puzzles, puzzleAnswers) 
     $('.answer-question').textContent = question.toUpperCase()
     
     // for learning purposes
@@ -89,6 +89,8 @@ async function displayNumbers(numbers){
 
 // puzzle time settins
 const timeRange = $('#speed-control')
+const answersRange = $('#answers-control')
 const puzzleRange = $('#puzzle-control')
 timeRange.addEventListener('input', () => puzzleTime = $('.time-display').textContent = timeRange.value)
+answersRange.addEventListener('input', () => puzzleAnswers = $('.answers-display').textContent = parseInt(answersRange.value))
 puzzleRange.addEventListener('input', () => puzzleAmount = $('.puzzle-display').textContent = parseInt(puzzleRange.value))
