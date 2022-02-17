@@ -119,7 +119,7 @@ export function generateQuestionAndAnswer(nums, puzzles, answers){
     }
     let prompts = Array()
     for (let i = 0; i < answers; i++){
-        prompts.push(q[i] + " (" + p[i] + ")")
+        prompts.push(q[i] + " (" + nums[p[i]] + ")")
     }
 
     const andWord = 'AND'
