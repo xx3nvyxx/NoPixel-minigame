@@ -102,37 +102,40 @@ export function generateRandomPuzzle(puzzleAmount){
 }
 
 
-export function generateQuestionAndAnswer(nums, puzzles){
-
-    const positionOne = randomInt(nums.length)
-    let tempPosTwo
-    do {tempPosTwo = randomInt(nums.length)} while(positionOne == tempPosTwo) 
-    const positionTwo = tempPosTwo
-    
-    let firstQuestion = sample(Object.keys(QUESTIONS))
-    let tempSecondQuestion
-    do {tempSecondQuestion = sample(Object.keys(QUESTIONS))} while(tempSecondQuestion == firstQuestion) 
-    let secondQuestion = tempSecondQuestion
+export function generateQuestionAndAnswer(nums, puzzles, answers){
+    let p = Array()
+    while (p.length < answers){
+        let tempP = randomInt(nums.length)
+        if (!p.includes(tempP)){
+            p.push(tempP)
+        }   
+    }
+    let q = Array()
+    while (q.length < answers){
+        let tempQ = sample(Object.keys(QUESTIONS))
+        if (!q.includes(tempQ)){
+            q.push(tempQ)
+        }   
+    }
+    let prompts = Array()
+    for (let i = 0; i < answers; i++){
+        prompts.push(q[i] + " (" + p[i] + ")")
+    }
 
     const andWord = 'AND'
+    const question = prompts.join(" " + andWord + " ")
+    
+    let a = Array()
+    for (let i = 0; i < answers; i++){
+        if (puzzles[p[i]].type==0 && q[i]=="color text"){
+            q[i] = "shape text"
+        } else if (puzzles[p[i]].type==0 && q[i]=="shape text"){
+            q[i] = "color text"
+        }
+        a.push(QUESTIONS[q[i]](puzzles[p[i]]))
+    }    
 
-    puzzles = puzzles.map(convertPuzzleDataLang)
-
-    console.log(puzzles)
-    //color up shape down fine
-    // this is confusing as hell, but works somehow
-    const question =  firstQuestion+' ('+nums[positionOne]+') '+andWord+' '+secondQuestion+' ('+nums[positionTwo]+')'
-    if (puzzles[positionOne].type==0 && firstQuestion=='color text'){
-        firstQuestion='shape text'
-    }else if(puzzles[positionOne].type==0 && firstQuestion=='shape text'){
-        firstQuestion='color text'
-    }
-    if (puzzles[positionTwo].type==0 && secondQuestion=='color text'){
-        secondQuestion='shape text'
-    }else if(puzzles[positionTwo].type==0 && secondQuestion=='shape text'){
-        secondQuestion='color text'
-    }
-    const answer = QUESTIONS[firstQuestion](puzzles[positionOne]) + ' ' + QUESTIONS[secondQuestion](puzzles[positionTwo])
+    const answer = a.join(' ')
 
 
     return [question, answer]
