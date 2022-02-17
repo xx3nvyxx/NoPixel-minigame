@@ -37,7 +37,7 @@
   border: rgba(255, 255, 255, 0.561) solid 2px;
 }
 
-.time-display, .puzzle-display, .streak-display{
+.time-display, .puzzle-display, .streak-display, .answers-display{
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.192);
   font-weight: bolder;
@@ -58,11 +58,25 @@
     background-color: var(--secondary);
 }
 
-#puzzle-control, #speed-control{
+#puzzle-control, #speed-control, #answers-control{
   margin-bottom: 8px;
 }
 
 .puzzle-control{
+  position:absolute; 
+  bottom: 96px;
+
+  margin: 20px;
+  padding: 8px;
+
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  
+  color: white;
+  background-color: var(--secondary);
+}
+
+.answers-control{
   position:absolute; 
   bottom: 48px;
 
@@ -349,7 +363,7 @@ background-size: cover;
 
 .streak {
   position:absolute; 
-  bottom:90px;
+  bottom:144px;
 
   margin: 20px;
   padding: 10px;
