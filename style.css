@@ -317,6 +317,7 @@ textarea:focus, input:focus{
 
 .screen-square{
   min-width: 1200px;
+  max-width: 90%;
   width: auto;
   height: 700px;
   background-color: var(--primary);
