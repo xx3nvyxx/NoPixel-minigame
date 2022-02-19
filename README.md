@@ -4,7 +4,7 @@ Feel free to 🌟**star**🌟 the project if you like it.
 Click the thumbnail bellow to try it out!  
 
 
-[![](thumbnail.jpg)](https://jesper-hustad.github.io/NoPixel-minigame/index)
+[![](thumbnail.jpg)](https://xx3nvyxx.github.io/NoPixel-minigame/)
 
 ## Is something wrong?
 If there is some part that is missing or something that isn't working right make an issue here on GitHub it will be looked at.
