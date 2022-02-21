@@ -60,6 +60,12 @@
 
 #puzzle-control, #speed-control, #answers-control{
   margin-bottom: 8px;
+  width: 175px;
+}
+.puzzle-label, .answers-label, .speed-label{
+  display: inline-block;
+  width: 125px;
+  text-align: right
 }
 
 .puzzle-control{
