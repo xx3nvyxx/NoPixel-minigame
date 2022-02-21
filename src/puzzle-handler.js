@@ -75,7 +75,7 @@ export async function doPuzzle(){
 
         // return nothing by default if puzzleTime seconds go by
         await delay(puzzleTime)
-        if ($("#sound-input").checked)
+        if (typeof metronome !== 'undefined' && $("#sound-input").checked)
             metronome.pause()
         resolve([null, answer])
     });
