@@ -105,13 +105,6 @@ input[type=range]::-webkit-slider-runnable-track {
 
 input[type=range]::-webkit-slider-thumb { margin-top: -5px; }
 
-
-.speed-label{
-  margin-left: 10px;
-  vertical-align: bottom;
-}
-
-
 .github-link{
     position:absolute; 
     bottom:8px;
