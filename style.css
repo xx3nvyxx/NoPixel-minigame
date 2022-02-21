@@ -361,7 +361,7 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
-.streak {
+.streak, .sound {
   position:absolute; 
   bottom:144px;
 
