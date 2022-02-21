@@ -33,8 +33,10 @@ export async function doPuzzle(){
     console.log(nums)
     await displayNumbers(nums)
 
-    const metronome = (puzzleTime == 7) ? playSound('assets/metronome.mp3') : playSound('assets/long-metronome.mp3')
-
+    if ($("#sound-input").checked){
+        const metronome = (puzzleTime == 7) ? playSound('assets/metronome.mp3') : playSound('assets/long-metronome.mp3')
+    }
+    
     // clear and focus input window
     $('.answer-section').classList.remove('hidden')
     inputElement.value = ''
@@ -65,14 +67,16 @@ export async function doPuzzle(){
         // return written input and answer
         inputElement.addEventListener("keyup", (event) => {
             if (event.keyCode === 13) {
-                metronome.pause()
+                if ($("#sound-input").checked)
+                    metronome.pause()
                 resolve([inputElement.value, answer])
             }
         });
 
         // return nothing by default if puzzleTime seconds go by
         await delay(puzzleTime)
-        metronome.pause()
+        if ($("#sound-input").checked)
+            metronome.pause()
         resolve([null, answer])
     });
 }
