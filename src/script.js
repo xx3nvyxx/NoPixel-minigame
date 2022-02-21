@@ -17,7 +17,8 @@ async function start(){
     $('.spy-icon').src = 'assets/spy-icon.png'
     $('.streak-display').innerHTML = streak
 
-    const dialing = playSound('assets/dialing.mp3', 0.1)
+    if ($("#sound-input").checked)
+        const dialing = playSound('assets/dialing.mp3', 0.1)
 
     // mock loading screen
     setInformationText('ESTABLISHING CONNECTION')
