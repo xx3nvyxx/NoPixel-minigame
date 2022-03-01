@@ -10,7 +10,7 @@ const LANG = TRANSLATIONS[selectedLang]
 const SHAPES = ["square", "triangle", "rectangle", "circle"]
 const COLORABLE = ['background', 'colortext', 'shapetext', 'number', 'shape']
 
-const COLOR_CODES = ['black', 'white','#1991F9','#8C0C00','#FFE335','#FF9900','#46A04F','#A43AB5']
+const COLOR_CODES = ['#000000', '#FFFFFF','#2196f3','#800000','#FFEB3C','#FF9800','#4CB050','#9D27B0']
 
 const LANG_COLORS = LANG.COLORS.reduce((obj, key, i) => {obj[key] = COLOR_CODES[i]; return obj}, {})
 
@@ -18,14 +18,14 @@ const LANG_COLORS = LANG.COLORS.reduce((obj, key, i) => {obj[key] = COLOR_CODES[
 // console.log('colors var', COLORS)
 // COLORS becomes this:
 const COLORS = {
-    'black' : 'black',
-    'white' : 'white', 
-    'blue' : '#2195EE',
-    'red' : '#7B0100',
-    'yellow' : '#FCEB3D', //done
-    'orange' : '#FD9802',
-    'green' : '#4CAE4f', //done
-    'purple' : '#9926AC', //done
+    'black' : '#000000',
+    'white' : '#FFFFFF', 
+    'blue' : '#2196f3',
+    'red' : '#800000',
+    'yellow' : '#FFEB3C', //done
+    'orange' : '#FF9800',
+    'green' : '#4CB050', //done
+    'purple' : '#9D27B0', //done
 }
 
 // functions that return answers from PuzzleData class
